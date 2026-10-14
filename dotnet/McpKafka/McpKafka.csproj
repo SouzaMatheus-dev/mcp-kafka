@@ -1,0 +1,39 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <RootNamespace>McpKafka</RootNamespace>
+    <AssemblyName>McpKafka</AssemblyName>
+
+    <PackageId>McpKafka</PackageId>
+    <Version>0.1.0</Version>
+    <Authors>matneves</Authors>
+    <Company>SouzaMatheus-dev</Company>
+    <Description>Servidor MCP especialista em Kafka UI (somente leitura): tópicos e mensagens. Sem produce nem delete. Credenciais só no ambiente do cliente.</Description>
+    <PackageTags>mcp;kafka;kafka-ui;readonly;gemini;dnx</PackageTags>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/SouzaMatheus-dev/mcp-kafka</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/SouzaMatheus-dev/mcp-kafka</RepositoryUrl>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+
+    <PackAsTool>true</PackAsTool>
+    <ToolCommandName>mcp-kafka</ToolCommandName>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\..\README.md" Pack="true" PackagePath="\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="9.0.4" />
+    <PackageReference Include="ModelContextProtocol" Version="1.4.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <InternalsVisibleTo Include="McpKafka.Tests" />
+  </ItemGroup>
+
+</Project>

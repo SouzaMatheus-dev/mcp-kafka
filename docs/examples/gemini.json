@@ -1,0 +1,26 @@
+{
+  "mcpServers": {
+    "kafka-a": {
+      "command": "mcp-kafka",
+      "timeout": 120000,
+      "trust": false,
+      "env": {
+        "KAFKA_UI_URL": "https://kafka-ui-a.exemplo.interno/auth",
+        "KAFKA_UI_USER": "",
+        "KAFKA_UI_PASSWORD": "",
+        "KAFKA_SKIP_TLS_VERIFY": "true"
+      }
+    },
+    "kafka-b": {
+      "command": "mcp-kafka",
+      "timeout": 120000,
+      "trust": false,
+      "env": {
+        "KAFKA_UI_URL": "https://kafka-ui-b.exemplo.interno/auth",
+        "KAFKA_UI_USER": "",
+        "KAFKA_UI_PASSWORD": "",
+        "KAFKA_SKIP_TLS_VERIFY": "true"
+      }
+    }
+  }
+}

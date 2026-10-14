@@ -1,0 +1,68 @@
+name: Publish NuGet
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+permissions:
+  contents: write
+  id-token: write
+
+jobs:
+  publish:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '9.0.x'
+
+      - name: Test
+        run: dotnet test dotnet/McpKafka.slnx -c Release
+
+      - name: Pack
+        run: dotnet pack dotnet/McpKafka/McpKafka.csproj -c Release -o dotnet/nupkg
+
+      - name: NuGet login (Trusted Publisher)
+        uses: NuGet/login@v1
+        id: login
+        with:
+          user: matneves
+
+      - name: Publish to NuGet.org
+        shell: pwsh
+        run: |
+          $package = Get-ChildItem -Path dotnet/nupkg/*.nupkg | Select-Object -First 1
+          if (-not $package) { throw "Nenhum .nupkg encontrado em dotnet/nupkg" }
+          Write-Host "Publicando $($package.FullName)..."
+          dotnet nuget push $package.FullName `
+            --api-key ${{ steps.login.outputs.NUGET_API_KEY }} `
+            --source https://api.nuget.org/v3/index.json
+
+      - name: Create GitHub Release
+        shell: pwsh
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          $tag = "${{ github.ref_name }}"
+          $version = $tag.TrimStart('v')
+          if (gh release view $tag 2>$null) {
+            Write-Host "Release $tag já existe, pulando criação."
+            exit 0
+          }
+          $notes = @"
+          ## McpKafka $version
+
+          Pacote publicado no [NuGet](https://www.nuget.org/packages/McpKafka/$version).
+
+          ### Instalação
+
+          ```powershell
+          dotnet tool install --global McpKafka --version $version
+          ```
+
+          Veja o [README](https://github.com/${{ github.repository }}/blob/$tag/README.md) para configuração MCP.
+          "@
+          gh release create $tag --title "McpKafka $version" --notes $notes

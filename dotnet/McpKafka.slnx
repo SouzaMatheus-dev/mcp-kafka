@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="McpKafka/McpKafka.csproj" />
+  <Project Path="McpKafka.Tests/McpKafka.Tests.csproj" />
+</Solution>
