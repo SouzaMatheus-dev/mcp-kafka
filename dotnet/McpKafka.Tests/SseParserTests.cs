@@ -10,7 +10,7 @@ public class SseParserTests
         const string sse =
             "data: {\"type\":\"PHASE\",\"phase\":{\"name\":\"Consumer assigned\"}}\n\n" +
             "data: {\"type\":\"CONSUMING\",\"consuming\":{\"messagesConsumed\":15,\"elapsedMs\":40,\"bytesConsumed\":9,\"isCancelled\":false,\"filterApplyErrors\":0}}\n\n" +
-            "data: {\"type\":\"MESSAGE\",\"message\":{\"partition\":2,\"offset\":99,\"timestamp\":\"2026-10-14T12:00:00Z\",\"key\":\"k\",\"content\":\"{\\\"ProcessoID\\\":\\\"PROC-42\\\"}\",\"headers\":{\"origem\":\"saf\"},\"valueSerde\":\"String\"}}\n\n" +
+            "data: {\"type\":\"MESSAGE\",\"message\":{\"partition\":2,\"offset\":99,\"timestamp\":\"2026-10-14T12:00:00Z\",\"key\":\"k\",\"content\":\"{\\\"ProcessoID\\\":\\\"PROC-42\\\"}\",\"headers\":{\"origem\":\"portal\"},\"valueSerde\":\"String\"}}\n\n" +
             "data: {\"type\":\"DONE\"}\n\n";
 
         var capture = SseParser.CollectBody(sse, limit: 10, mustContain: "PROC-42");
@@ -22,7 +22,7 @@ public class SseParserTests
         Assert.Equal(2, message.Partition);
         Assert.Equal(99, message.Offset);
         Assert.Contains("PROC-42", message.Content, StringComparison.Ordinal);
-        Assert.Contains("origem=saf", message.Headers, StringComparison.Ordinal);
+        Assert.Contains("origem=portal", message.Headers, StringComparison.Ordinal);
     }
 
     [Fact]
