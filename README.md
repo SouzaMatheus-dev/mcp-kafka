@@ -7,8 +7,9 @@
 
 Servidor **MCP especialista em Kafka UI**, **somente leitura**.
 
-Conecte o Gemini CLI ao portal Kafka UI. O MCP lista clusters e tópicos e
-localiza mensagens pelo **ProcessoID**. Não produz, não apaga e não altera tópico.
+O transporte é **stdio**. Qualquer cliente MCP que aceite `command` e `env` fala
+com o portal Kafka UI. O servidor lista clusters e tópicos e localiza mensagens
+pelo **ProcessoID**. Não produz, não apaga e não altera tópico.
 
 O pacote **não embute** URL, usuário nem senha. Cada ambiente é uma entrada MCP,
 com credencial só no `env` local.
@@ -34,7 +35,7 @@ Repositório: https://github.com/SouzaMatheus-dev/mcp-kafka
 
 O nome do tópico **não está fixo aqui**. Ele sai da tabela de parametrização das
 fases da esteira. Use o **MCP SQL** (scripts úteis) para achar o nome e só então
-chame `buscar_mensagens`. |
+chame `buscar_mensagens`.
 
 ---
 
@@ -104,7 +105,7 @@ na máquina.
 ```
 
 Senha só em arquivo local gitignored (`settings.local.json` ou o `env` do cliente).
-Modelo sem segredo: `docs/examples/gemini.json`.
+Modelo sem segredo: `docs/examples/mcp.json`.
 
 Se o portal tiver mais de um cluster e nenhum marcado como padrão, defina
 `KAFKA_CLUSTER` ou passe o parâmetro `cluster` na tool.

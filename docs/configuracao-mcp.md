@@ -5,10 +5,10 @@ não vale no outro.
 
 A URL pode ser a página de login (`.../auth`). O processo usa a raiz.
 
-## Gemini CLI
+## Cliente MCP
 
-Arquivo do usuário: `%USERPROFILE%\.gemini\settings.json`  
-Segredos: `.gemini/settings.local.json` (gitignored).
+O processo fala por **stdio**. A configuração abaixo entra no arquivo de servidores
+MCP do cliente. Usuário e senha ficam só nesse arquivo, fora do repositório.
 
 ```json
 {
@@ -39,7 +39,7 @@ Segredos: `.gemini/settings.local.json` (gitignored).
 }
 ```
 
-Reinicie o Gemini e rode `/mcp list`. As tools são só de leitura.
+Reinicie o cliente. As tools que aparecem são só de leitura.
 
 ## Cluster explícito
 

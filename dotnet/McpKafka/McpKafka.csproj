@@ -9,11 +9,11 @@
     <AssemblyName>McpKafka</AssemblyName>
 
     <PackageId>McpKafka</PackageId>
-    <Version>0.1.0</Version>
+    <Version>0.1.1</Version>
     <Authors>matneves</Authors>
     <Company>SouzaMatheus-dev</Company>
     <Description>Servidor MCP especialista em Kafka UI (somente leitura): tópicos e mensagens. Sem produce nem delete. Credenciais só no ambiente do cliente.</Description>
-    <PackageTags>mcp;kafka;kafka-ui;readonly;gemini;dnx</PackageTags>
+    <PackageTags>mcp;kafka;kafka-ui;readonly;dnx</PackageTags>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/SouzaMatheus-dev/mcp-kafka</PackageProjectUrl>
     <RepositoryUrl>https://github.com/SouzaMatheus-dev/mcp-kafka</RepositoryUrl>
